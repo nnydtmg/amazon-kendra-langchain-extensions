@@ -4,8 +4,10 @@ from langchain.prompts import PromptTemplate
 from langchain import OpenAI
 import sys
 import os
+import boto3
 
 MAX_HISTORY_LENGTH = 5
+client = boto3.client('kendra')
 
 def build_chain():
   region = os.environ["AWS_REGION"]
@@ -13,7 +15,7 @@ def build_chain():
 
   llm = OpenAI(batch_size=5, temperature=0, max_tokens=300)
       
-  retriever = AmazonKendraRetriever(index_id=kendra_index_id)
+  retriever = AmazonKendraRetriever(index_id=kendra_index_id,client=client)
 
   prompt_template = """
   The following is a friendly conversation between a human and an AI. 
