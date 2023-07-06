@@ -66,3 +66,40 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 This library is licensed under the MIT-0 License. See the LICENSE file.
 
+## Sample
+```bash
+python -V
+sudo amazon-linux-extras install -y python3.8
+sudo ln -sf /usr/bin/python3.8 /usr/bin/python3
+python -V
+export AWS_REGION="<YOUR-AWS-REGION>"
+export KENDRA_INDEX_ID="<YOUR-KENDRA-INDEX-ID>"
+export OPENAI_API_KEY="<YOUR-OPEN-AI-API-KEY>"
+git clone https://github.com/aws-samples/amazon-kendra-langchain-extensions.git
+cd amazon-kendra-langchain-extensions/
+cd kendra_retriever_samples
+pip install -r requirements.txt
+python kendra_chat_open_ai.py
+streamlit run app.py openai
+```
+
+prompt
+```
+The following is a friendly conversation between a human and an AI. 
+  The AI is talkative and provides lots of specific details from its context.
+  If the AI does not know the answer to a question, it truthfully says it 
+  does not know.
+  {context}
+  Instruction: Based on the above documents, provide a detailed answer for, {question} Answer "don't know" 
+  if not present in the document. 
+  Solution:
+```
+
+```
+以下は人間とAIの間の友好的な会話です。
+  AI はおしゃべりで、コンテキストから多くの具体的な詳細を提供します。
+  AI は質問に対する答えが分からない場合、正直にわからないと答えます。
+  {context}
+  指示: 上記の文書に基づいて、次の詳細な回答を提供してください。{question} 分からない場合は分からないと答えてください。
+  解決策：
+```
